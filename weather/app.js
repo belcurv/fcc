@@ -1,75 +1,110 @@
-$(document).ready(function() {
+(function () {
 
-  'use strict';
-
-  var units = 'F';
-
-  var fetchLocation = new Promise(function(resolve) {
-
-      // 1. First async task: get location
-      navigator.geolocation.getCurrentPosition(function(pos) {
-        $('#status').html('Trying to obtain geolocation...');
-        setTimeout(function() {
-          resolve(pos.coords);
-        }, 1000);
-        
-      }, function(err) {
-        console.warn('Error(' + err.code + '): ' + err.message);
-      });
-
-    });
-  
-  fetchLocation
-    .then(function(coords) {
+    'use strict';
     
-      $('#status').html('Location found, fetching weather...');
+    angular.module('weatherApp', [])
+    
+        .factory('weatherFac', ['$q', '$http', '$window', function ($q, $http, $window) {
+            
+            
+            /* Get user location w/geolocation
+             * Async operation requires promise ($q)
+             *
+             * @params                  [none]
+             * @returns   [object]      [coordinates obj or error]
+             */
+            function getCurrentPosition() {
+                var deferred = $q.defer();
+                
+                if (!$window.navigator.geolocation) {
+                    deferred.reject('Browser does not support geolocation');
+                } else {
+                    $window.navigator.geolocation.getCurrentPosition(
+                        function (pos) {
+                            deferred.resolve(pos.coords);
+                        },
+                        function (err) {
+                            deferred.reject(err);
+                        }
+                    );
+                }
+                
+                return deferred.promise;
+            }
+            
+            
+            /* Get local weather
+             * $http GET method returns a promise
+             *
+             * @params   [object]   coords   [coordinates object]
+             * @returns  [object]            [weather results]
+             */
+            function getWeather(coords) {
+                var lat     = coords.latitude,
+                    long    = coords.longitude,
+                    baseUrl = "http://forecast.weather.gov/MapClick.php",
+                    fullUrl = baseUrl + "?lat=" + lat + "&lon=" + long + "&FcstType=json";
 
-      // 2. 2nd async task: get weather
-      return new Promise(function(resolve) {
-        var lat = coords.latitude,
-            long = coords.longitude,
-            baseUrl = "http://forecast.weather.gov/MapClick.php",
-            fullUrl = baseUrl + "?lat=" + lat + "&lon=" + long + "&FcstType=json";
-        
-        setTimeout(function() {
-          $.getJSON(fullUrl, function(response) {
-            resolve(response.currentobservation);
-          });
-        }, 1000);
-      });
-    })
-    .then(function(weather) {
+                return $http.get(fullUrl)
+                    .then(
+                        function (response) {
+                            console.log('Status: ' + response.status);
+                            console.log('Data', response.data);
+                            return response.data.currentobservation;
+                        },
+                        function (response) {
+                            console.log('Status: ' + response.status);
+                        }
+                    );
+            }
+            
+            
+            // export the methods
+            return {
+                getCurrentPosition: getCurrentPosition,
+                getWeather: getWeather
+            };
+            
+        }])
+    
+        .controller('weatherController', ['weatherFac', function (weatherFac) {
+            
+            var vm = this,
+                degSign = String.fromCharCode(parseInt('00B0', 16)),
+                units = 'F';
+            
+            
+            // init view object; to be filled by updateView()
+            vm.weather = {};
+                        
 
-      // 3. Finally, update the DOM
-      $('#status').html('Local weather:');
-      $("#location").html(weather.name);
-      $("#date").html(weather.Date);
-      $("#temperature").html(weather.Temp + "&deg; " + units);
+            // IIEF to kick it all off
+            (function getUserLocation() {
+                weatherFac.getCurrentPosition()
+                    .then(weatherFac.getWeather)
+                    .then(function (weather) {
+                        // bind weather object to view model
+                        vm.weather = weather;
+                        vm.weather.units = degSign + ' ' + units;
+                    });
+            }());
+            
 
-    })
-    .catch(function(err) {
+            // handle "change units" button event clicks
+            // just gets DOM value, manipulates it, and sticks it back into the DOM
+            vm.changeUnits = function (temp, units) {
+                
+                // units is a string of length = 3, consisting of the
+                // deg symbol + unit letter. We target 3rd position:
+                if (units[2] === 'F') {
+                    vm.weather.Temp = ((temp - 32) * 5 / 9).toFixed(0);
+                    vm.weather.units = degSign + ' C';
+                } else {
+                    vm.weather.Temp = ((temp * 9 / 5) + 32).toFixed(0);
+                    vm.weather.units = degSign + ' F';
+                }
+            };
 
-      // 4. handle errors
-      console.log(err);
-    });
+        }]);
 
-  
-  // handle "change units" button event clicks
-  // just gets DOM value, manipulates it, and sticks it back into the DOM
-  $("#changeUnits").click(function() {
-    var tempString = $("#temperature").text(),
-        temp = parseFloat(tempString);
-
-    if (units === 'F') {
-      temp = ((temp - 32) * 5 / 9).toFixed(0);
-      units = 'C';
-      $("#temperature").html(temp + "&deg; " + units);
-    } else {
-      temp = ((temp * 9 / 5) + 32).toFixed(0);
-      units = 'F';
-      $("#temperature").html(temp + "&deg; " + units);
-    }
-
-  });
-
-});
+}());
