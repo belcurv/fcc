@@ -1,0 +1,158 @@
+{
+    "clear" : {
+        "day"  : "skc.png",
+        "night": "nskc.png"
+    },
+    "A Few Clouds" : {
+        "day"  : "few.png",
+        "night": "nfew.png,"
+    },
+    "Partly Cloudy" : {
+        "day"  : "sct.png",
+        "night": "nsct.png"
+    },
+    "Mostly Cloudy" : {
+        "day"  : "bkn.png",
+        "night": "nbkn.png"
+    },
+    "Overcast" : {
+        "day"  : "ovc.png",
+        "night": "novc.png"
+    },
+    "Snow" : {
+        "day"  : "sn.png",
+        "night": "nsn.png"
+    },
+    "Rain Snow" : {
+        "day"  : "ra_sn.png",
+        "night": "nra_sn.png"
+    },
+    "Rain Ice Pellets" : {
+        "day"  : "raip.png",
+        "night": "nraip.png"
+    },
+    "Freezing Rain" : {
+        "day"  : "fzra.png",
+        "night": "nfzra.png"
+    },
+    "Freezing Drizzle Rain" : {
+        "day"  : "ra_fzra.png",
+        "night": "nra_fzra.png"
+    },
+    "Freezing Rain Snow" : {
+        "day"  : "fzra_sn.png",
+        "night": "nfzra_sn.png"
+    },
+    "Hail" : {
+        "day"  : "ip.png",
+        "night": "nip.png"
+    },
+    "Snow Ice Pellets" : {
+        "day"  : "snip.png",
+        "night": "nsnip.png"
+    },
+    "Light Rain" : {
+        "day"  : "minus_ra.png",
+        "night": "nra.png"
+    },
+    "Rain" : {
+        "day"  : "ra.png",
+        "night": "nra.png"
+    },
+    "Light Rain Showers" : {
+        "day"  : "shra.png",
+        "night": "nshra.png"
+    },
+    "Showers in Vicinity" : {
+        "day"  : "hi_shwrs.png",
+        "night": "hi_nshwrs.png"
+    },
+    "Light Thunderstorm Rain Hail" : {
+        "day"  : "tsra.png",
+        "night": "ntsra.png"
+    },
+    "Thunderstorm in Vicinity" : {
+        "day"  : "scttsra.png",
+        "night": "nscttsra.png"
+    },
+    "Thunderstorm in Vicinity" : {
+        "day"  : "hi_tsra.png",
+        "night": "hi_ntsra.png"
+    },
+    "Funnel Cloud" : {
+        "day"  : "fc.png",
+        "night": "nfc.png"
+    },
+    "Tornado" : {
+        "day"  : "tor.png",
+        "night": "ntor.png"
+    },
+    "Hurricane Warning" : {
+        "day"  : "hur_warn.png",
+        "night": "hur_warn.png"
+    },
+    "Hurricane Watch" : {
+        "day"  : "hur_watch.png",
+        "night": "hur_watch.png"
+    },
+    "Tropical Storm Warning" : {
+        "day"  : "ts_warn.png",
+        "night": "ts_warn.png"
+    },
+    "Tropical Storm Watch" : {
+        "day"  : "ts_watch.png",
+        "night": "ts_watch.png"
+    },
+    "Tropical Storm Conditions presently exist w/Hurricane Warning in effect" : {
+        "day"  : "ts_nowarn.png",
+        "night": "ts_nowarn.png"
+    },
+    "Fair and Windy" : {
+        "day"  : "wind_skc.png",
+        "night": "nwind_skc.png"
+    },
+    "A Few Clouds and Windy" : {
+        "day"  : "wind_few.png",
+        "night": "nwind_few.png"
+    },
+    "Partly Cloudy and Windy" : {
+        "day"  : "wind_sct.png",
+        "night": "nwind_sct.png"
+    },
+    "Mostly Cloudy and Windy" : {
+        "day"  : "wind_bkn.png",
+        "night": "nwind_bkn.png"
+    },
+    "Overcast and Windy" : {
+        "day"  : "wind_ovc.png",
+        "night": "nwind_ovc.png"
+    },
+    "Dust" : {
+        "day"  : "du.png",
+        "night": "ndu.png"
+    },
+    "Smoke" : {
+        "day"  : "fu.png",
+        "night": "nfu.png"
+    },
+    "Haze" : {
+        "day"  : "hz.png",
+        "night": "hz.png"
+    },
+    "Hot" : {
+        "day"  : "hot.png",
+        "night": "hot.png"
+    },
+    "Cold" : {
+        "day"  : "cold.png",
+        "night": "ncold.png"
+    },
+    "Blizzard" : {
+        "day"  : "blizzard.png",
+        "night": "nblizzard.png"
+    },
+    "fog" : {
+        "day"  : "fg.png",
+        "night": "nfg.png"
+    }
+}

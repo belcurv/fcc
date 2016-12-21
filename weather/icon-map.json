@@ -1,0 +1,158 @@
+{
+    "clear" : {
+        "skc.png"  : "wi-owm-800",
+        "nskc.png" : "wi-owm-night-800"
+    },
+    "A Few Clouds" : {
+        "few.png"  : "wi-owm-day-804",
+        "nfew.png" : "wi-owm-night-804"
+    },
+    "Partly Cloudy" : {
+        "sct.png"  : "wi-owm-day-804",
+        "nsct.png" : "wi-owm-night-804"
+    },
+    "Mostly Cloudy" : {
+        "bkn.png"  : "wi-owm-day-804",
+        "nbkn.png" : "wi-owm-night-804"
+    },
+    "Overcast" : {
+        "ovc.png"  : "wi-owm-804",
+        "novc.png" : "wi-owm-804"
+    },
+    "Snow" : {
+        "sn.png"  : "wi-owm-day-600",
+        "nsn.png" : "wi-owm-600"
+    },
+    "Rain Snow" : {
+        "ra_sn.png"  : "wi-owm-day-611",
+        "nra_sn.png" : "wi-owm-611"
+    },
+    "Rain Ice Pellets" : {
+        "raip.png"  : "wi-owm-day-611",
+        "nraip.png" : "wi-owm-611"
+    },
+    "Freezing Rain" : {
+        "fzra.png"  : "wi-owm-day-611",
+        "nfzra.png" : "wi-owm-611"
+    },
+    "Freezing Drizzle Rain" : {
+        "ra_fzra.png"  : "wi-owm-day-611",
+        "nra_fzra.png" : "wi-owm-611"
+    },
+    "Freezing Rain Snow" : {
+        "fzra_sn.png"  : "wi-owm-day-611",
+        "nfzra_sn.png" : "wi-owm-611"
+    },
+    "Hail" : {
+        "ip.png"  : "wi-owm-day-906",
+        "nip.png" : "wi-owm-906"
+    },
+    "Snow Ice Pellets" : {
+        "snip.png"  : "wi-owm-day-611",
+        "nsnip.png" : "wi-owm-611"
+    },
+    "Light Rain" : {
+        "minus_ra.png" : "wi-owm-day-300",
+        "nra.png"      : "wi-owm-300"
+    },
+    "Rain" : {
+        "ra.png"  : "wi-owm-day-302",
+        "nra.png" : "wi-owm-302"
+    },
+    "Light Rain Showers" : {
+        "shra.png"  : "wi-owm-day-300",
+        "nshra.png" : "wi-owm-300"
+    },
+    "Showers in Vicinity" : {
+        "hi_shwrs.png"  : "wi-owm-day-520",
+        "hi_nshwrs.png" : "wi-owm-313"
+    },
+    "Light Thunderstorm Rain Hail" : {
+        "tsra.png"  : "wi-owm-day-200",
+        "ntsra.png" : "wi-owm-200"
+    },
+    "Thunderstorm in Vicinity" : {
+        "scttsra.png"  : "wi-owm-day-200",
+        "nscttsra.png" : "wi-owm-200"
+    },
+    "Thunderstorm in Vicinity" : {
+        "hi_tsra.png"  : "wi-owm-day-200",
+        "hi_ntsra.png" : "wi-owm-200"
+    },
+    "Funnel Cloud" : {
+        "fc.png"  : "wi-owm-day-900",
+        "nfc.png" : "wi-owm-900"
+    },
+    "Tornado" : {
+        "tor.png"  : "wi-owm-day-900",
+        "ntor.png" : "wi-owm-900"
+    },
+    "Hurricane Warning" : {
+        "hur_warn.png" : "wi-owm-day-902",
+        "hur_warn.png" : "wi-owm-day-902"
+    },
+    "Hurricane Watch" : {
+        "hur_watch.png" : "wi-owm-day-902",
+        "hur_watch.png" : "wi-owm-day-902"
+    },
+    "Tropical Storm Warning" : {
+        "ts_warn.png" : "wi-owm-902",
+        "ts_warn.png" : "wi-owm-902"
+    },
+    "Tropical Storm Watch" : {
+        "ts_watch.png" : "wi-owm-902",
+        "ts_watch.png" : "wi-owm-902"
+    },
+    "Tropical Storm Conditions presently exist w/Hurricane Warning in effect" : {
+        "ts_nowarn.png" : "wi-owm-902",
+        "ts_nowarn.png" : "wi-owm-902"
+    },
+    "Fair and Windy" : {
+        "wind_skc.png"  : "wi-owm-957",
+        "nwind_skc.png" : "wi-owm-957"
+    },
+    "A Few Clouds and Windy" : {
+        "wind_few.png"  : "wi-owm-day-801",
+        "nwind_few.png" : "wi-owm-801"
+    },
+    "Partly Cloudy and Windy" : {
+        "wind_sct.png"  : "wi-owm-day-801",
+        "nwind_sct.png" : "wi-owm-801"
+    },
+    "Mostly Cloudy and Windy" : {
+        "wind_bkn.png"  : "wi-owm-day-801",
+        "nwind_bkn.png" : "wi-owm-801"
+    },
+    "Overcast and Windy" : {
+        "wind_ovc.png"  : "wi-owm-801",
+        "nwind_ovc.png" : "wi-owm-801"
+    },
+    "Dust" : {
+        "du.png"  : "wi-owm-day-761",
+        "ndu.png" : "wi-owm-761"
+    },
+    "Smoke" : {
+        "fu.png"  : "wi-owm-day-711",
+        "nfu.png" : "wi-owm-711"
+    },
+    "Haze" : {
+        "hz.png" : "wi-owm-day-721",
+        "hz.png" : "wi-owm-721"
+    },
+    "Hot" : {
+        "hot.png" : "wi-owm-904",
+        "hot.png" : "wi-owm-904"
+    },
+    "Cold" : {
+        "cold.png"  : "wi-owm-903",
+        "ncold.png" : "wi-owm-903"
+    },
+    "Blizzard" : {
+        "blizzard.png"  : "wi-owm-day-600",
+        "nblizzard.png" : "wi-owm-600"
+    },
+    "fog" : {
+        "fg.png"  : "wi-owm-day-741",
+        "nfg.png" : "wi-owm-741"
+    }
+}

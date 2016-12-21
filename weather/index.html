@@ -6,16 +6,19 @@
     <title>Local Weather</title>
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/font/weathericons-regular-webfont.svg" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
     <script src="app.js"></script>
 
 </head>
 
-<body ng-app="weatherApp" ng-controller="weatherController as vm" style="background-image: url({{vm.background}})">
+<body ng-app="weatherApp" ng-controller="weatherController as vm"
+    style="background: linear-gradient( {{vm.background }} ) center center no-repeat fixed">
 
     <!--    <forecast class="report" weather="vm.weather"></forecast> -->
-
+    
     <section>
         <div class="report">{{vm.weather.name}}</div>
         <div class="report">{{vm.weather.Date | date}}</div>
@@ -25,10 +28,9 @@
                 ng-click="vm.changeUnits(vm.weather.Temp, vm.weather.units)">
             Change Units
         </button>
+        
+        <i class="wi {{vm.weather.icon}}"></i>
 
-    </section>
-    <section>
-        <pre>{{vm.weather | json:2}}</pre>
     </section>
 
 </body>

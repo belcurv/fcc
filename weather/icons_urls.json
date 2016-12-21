@@ -1,0 +1,158 @@
+{
+    "clear" : {
+        "day"  : "/images/nws/newicons/skc.png",
+        "night": "/images/nws/newicons/nskc.png"
+    },
+    "A Few Clouds" : {
+        "day"  : "/images/nws/newicons/few.png",
+        "night": "/images/nws/newicons/nfew.png,"
+    },
+    "Partly Cloudy" : {
+        "day"  : "/images/nws/newicons/sct.png",
+        "night": "/images/nws/newicons/nsct.png"
+    },
+    "Mostly Cloudy" : {
+        "day"  : "/images/nws/newicons/bkn.png",
+        "night": "/images/nws/newicons/nbkn.png"
+    },
+    "Overcast" : {
+        "day"  : "/images/nws/newicons/ovc.png",
+        "night": "/images/nws/newicons/novc.png"
+    },
+    "Snow" : {
+        "day"  : "/images/nws/newicons/sn.png",
+        "night": "/images/nws/newicons/nsn.png"
+    },
+    "Rain Snow" : {
+        "day"  : "/images/nws/newicons/ra_sn.png",
+        "night": "/images/nws/newicons/nra_sn.png"
+    },
+    "Rain Ice Pellets" : {
+        "day"  : "/images/nws/newicons/raip.png",
+        "night": "/images/nws/newicons/nraip.png"
+    },
+    "Freezing Rain" : {
+        "day"  : "/images/nws/newicons/fzra.png",
+        "night": "/images/nws/newicons/nfzra.png"
+    },
+    "Freezing Drizzle Rain" : {
+        "day"  : "/images/nws/newicons/ra_fzra.png",
+        "night": "/images/nws/newicons/nra_fzra.png"
+    },
+    "Freezing Rain Snow" : {
+        "day"  : "/images/nws/newicons/fzra_sn.png",
+        "night": "/images/nws/newicons/nfzra_sn.png"
+    },
+    "Hail" : {
+        "day"  : "/images/nws/newicons/ip.png",
+        "night": "/images/nws/newicons/nip.png"
+    },
+    "Snow Ice Pellets" : {
+        "day"  : "/images/nws/newicons/snip.png",
+        "night": "/images/nws/newicons/nsnip.png"
+    },
+    "Light Rain" : {
+        "day"  : "/images/nws/newicons/minus_ra.png",
+        "night": "/images/nws/newicons/nra.png"
+    },
+    "Rain" : {
+        "day"  : "/images/nws/newicons/ra.png",
+        "night": "/images/nws/newicons/nra.png"
+    },
+    "Light Rain Showers" : {
+        "day"  : "/images/nws/newicons/shra.png",
+        "night": "/images/nws/newicons/nshra.png"
+    },
+    "Showers in Vicinity" : {
+        "day"  : "/images/nws/newicons/hi_shwrs.png",
+        "night": "/images/nws/newicons/hi_nshwrs.png"
+    },
+    "Light Thunderstorm Rain Hail" : {
+        "day"  : "/images/nws/newicons/tsra.png",
+        "night": "/images/nws/newicons/ntsra.png"
+    },
+    "Thunderstorm in Vicinity" : {
+        "day"  : "/images/nws/newicons/scttsra.png",
+        "night": "/images/nws/newicons/nscttsra.png"
+    },
+    "Thunderstorm in Vicinity" : {
+        "day"  : "/images/nws/newicons/hi_tsra.png",
+        "night": "/images/nws/newicons/hi_ntsra.png"
+    },
+    "Funnel Cloud" : {
+        "day"  : "/images/nws/newicons/fc.png",
+        "night": "/images/nws/newicons/nfc.png"
+    },
+    "Tornado" : {
+        "day"  : "/images/nws/newicons/tor.png",
+        "night": "/images/nws/newicons/ntor.png"
+    },
+    "Hurricane Warning" : {
+        "day"  : "/images/nws/newicons/hur_warn.png",
+        "night": "/images/nws/newicons/hur_warn.png"
+    },
+    "Hurricane Watch" : {
+        "day"  : "/images/nws/newicons/hur_watch.png",
+        "night": "/images/nws/newicons/hur_watch.png"
+    },
+    "Tropical Storm Warning" : {
+        "day"  : "/images/nws/newicons/ts_warn.png",
+        "night": "/images/nws/newicons/ts_warn.png"
+    },
+    "Tropical Storm Watch" : {
+        "day"  : "/images/nws/newicons/ts_watch.png",
+        "night": "/images/nws/newicons/ts_watch.png"
+    },
+    "Tropical Storm Conditions presently exist w/Hurricane Warning in effect" : {
+        "day"  : "/images/nws/newicons/ts_nowarn.png",
+        "night": "/images/nws/newicons/ts_nowarn.png"
+    },
+    "Fair and Windy" : {
+        "day"  : "/images/nws/newicons/wind_skc.png",
+        "night": "/images/nws/newicons/nwind_skc.png"
+    },
+    "A Few Clouds and Windy" : {
+        "day"  : "/images/nws/newicons/wind_few.png",
+        "night": "/images/nws/newicons/nwind_few.png"
+    },
+    "Partly Cloudy and Windy" : {
+        "day"  : "/images/nws/newicons/wind_sct.png",
+        "night": "/images/nws/newicons/nwind_sct.png"
+    },
+    "Mostly Cloudy and Windy" : {
+        "day"  : "/images/nws/newicons/wind_bkn.png",
+        "night": "/images/nws/newicons/nwind_bkn.png"
+    },
+    "Overcast and Windy" : {
+        "day"  : "/images/nws/newicons/wind_ovc.png",
+        "night": "/images/nws/newicons/nwind_ovc.png"
+    },
+    "Dust" : {
+        "day"  : "/images/nws/newicons/du.png",
+        "night": "/images/nws/newicons/ndu.png"
+    },
+    "Smoke" : {
+        "day"  : "/images/nws/newicons/fu.png",
+        "night": "/images/nws/newicons/nfu.png"
+    },
+    "Haze" : {
+        "day"  : "/images/nws/newicons/hz.png",
+        "night": "/images/nws/newicons/hz.png"
+    },
+    "Hot" : {
+        "day"  : "/images/nws/newicons/hot.png",
+        "night": "/images/nws/newicons/hot.png"
+    },
+    "Cold" : {
+        "day"  : "/images/nws/newicons/cold.png",
+        "night": "/images/nws/newicons/ncold.png"
+    },
+    "Blizzard" : {
+        "day"  : "/images/nws/newicons/blizzard.png",
+        "night": "/images/nws/newicons/nblizzard.png"
+    },
+    "fog" : {
+        "day"  : "/images/nws/newicons/fg.png",
+        "night": "/images/nws/newicons/nfg.png"
+    }
+}
