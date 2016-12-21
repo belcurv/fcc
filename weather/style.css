@@ -1,4 +1,5 @@
 /* reset */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,28 +8,38 @@
 }
 
 body {
+    width: 100%;
     display: flex;
     justify-content: center;
-    font-size: 10px
+    font-size: 10px;
+    background-color: #bbbbbb;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 section {
     width: 800px;
-    margin-top: 20px;
+    margin: 20px;
     padding: 20px;
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .report {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    color: #000;
+}
+
+pre {
+    font-size: 0.9rem;
 }
 
 button {
     border-radius: 5px;
     height: 40px;
-    width: 130px;
+    width: 100%;
     color: black;
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 button:focus {

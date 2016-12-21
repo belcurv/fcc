@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Local Weather</title>
-    
+
     <link rel="stylesheet" href="style.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
@@ -12,18 +12,23 @@
 
 </head>
 
-<body ng-app="weatherApp" ng-controller="weatherController as vm">
-   
-    <forecast class="report" weather="vm.weather"></forecast>
-    
+<body ng-app="weatherApp" ng-controller="weatherController as vm" style="background-image: url({{vm.background}})">
+
+    <!--    <forecast class="report" weather="vm.weather"></forecast> -->
+
     <section>
         <div class="report">{{vm.weather.name}}</div>
         <div class="report">{{vm.weather.Date | date}}</div>
         <div class="report">{{vm.weather.Weather}}, {{vm.weather.Temp + vm.weather.units}}</div>
-        
-        <button class="weatherButton" ng-click="vm.changeUnits(vm.weather.Temp, vm.weather.units)">
+
+        <button class="weatherButton"
+                ng-click="vm.changeUnits(vm.weather.Temp, vm.weather.units)">
             Change Units
         </button>
+
+    </section>
+    <section>
+        <pre>{{vm.weather | json:2}}</pre>
     </section>
 
 </body>
