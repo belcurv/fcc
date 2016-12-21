@@ -49,7 +49,6 @@
                 return deferred.promise;
             }
 
-
             /* Get local weather
              * $http GET method returns a promise
              *
@@ -58,11 +57,11 @@
              */
             function getWeather(coords) {
                 var fullUrl = [
-                        'http://forecast.weather.gov/MapClick.php',
-                        '?lat=', coords.latitude,
-                        '&lon=', coords.longitude,
-                        '&FcstType=json'
-                    ].join('');
+                    'http://forecast.weather.gov/MapClick.php',
+                    '?lat=', coords.latitude,
+                    '&lon=', coords.longitude,
+                    '&FcstType=json'
+                ].join('');
 
                 return $http.get(fullUrl)
                     .then(
@@ -164,18 +163,17 @@
 
             // init view object; to be filled by updateView()
             vm.weather = {};
-            
-            
+
+            // generate random hex color code
             function randomColor() {
-                var col = "#000000".replace(/0/g, function () {
-                    return (~~(Math.random() * 16)).toString(16);
+                var color = "#000000".replace(/0/g, function () {
+                    return (Math.floor(Math.random() * 16)).toString(16);
                 });
-                
-                return col;
+
+                return color;
             }
 
-
-            // random background image
+            // bind background gradient colors to view
             vm.background = randomColor() + ', ' + randomColor();
 
             // IIEF to kick it all off
@@ -183,13 +181,17 @@
                 weatherFac.getCurrentPosition()
                     .then(weatherFac.getWeather)
                     .then(function (weather) {
+
+                        var city = (weather.name).split(',')[0],
+                            state = weather.state;
+
                         // bind weather object to view model
                         vm.weather = weather;
+                        vm.weather.location = city + ', ' + state;
                         vm.weather.units = degSign + ' ' + units;
-                        vm.weather.icon  = iconMap[weather.Weatherimage];
+                        vm.weather.icon = iconMap[weather.Weatherimage];
                     });
             }());
-
 
             /* Handle "change units" button
              *
@@ -207,7 +209,6 @@
                     vm.weather.units = degSign + ' F';
                 }
             };
-
         }]);
 
 }());

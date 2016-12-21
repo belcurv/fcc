@@ -14,16 +14,22 @@
 
 </head>
 
-<body ng-app="weatherApp" ng-controller="weatherController as vm"
-    style="background: linear-gradient( {{vm.background }} ) center center no-repeat fixed">
-
-    <!--    <forecast class="report" weather="vm.weather"></forecast> -->
+<body ng-cloak
+      ng-app="weatherApp"
+      ng-controller="weatherController as vm"
+      style="background: linear-gradient( {{vm.background }} ) center center no-repeat fixed">
     
-    <section>
-        <div class="report">{{vm.weather.name}}</div>
-        <div class="report">{{vm.weather.Date | date}}</div>
-        <div class="report">{{vm.weather.Weather}}, {{vm.weather.Temp + vm.weather.units}}</div>
-
+    <div ng-if="!vm.weather.Weather">
+        <i class="wi wi-cloud-down"></i>
+        <p class="forecast">Fetching location...</p>
+    </div>
+    
+    <div ng-if="vm.weather.Weather"
+         class="container">
+        <p class="location">{{vm.weather.location}}</p>
+        <p class="forecast">{{vm.weather.Weather}}</p>
+        <p class="forecast">{{vm.weather.Temp + vm.weather.units}}</p>
+        
         <button class="weatherButton"
                 ng-click="vm.changeUnits(vm.weather.Temp, vm.weather.units)">
             Change Units
@@ -31,7 +37,7 @@
         
         <i class="wi {{vm.weather.icon}}"></i>
 
-    </section>
+   </div>
 
 </body>
 
