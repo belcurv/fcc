@@ -170,7 +170,7 @@
                     .then(weatherFac.getWeather)
                     .then(function (weather) {
 
-                        var city = (weather.name).split(',')[0],
+                        var city = (weather.name).split(/,| /)[0],
                             state = weather.state;
 
                         // bind weather object to view model
