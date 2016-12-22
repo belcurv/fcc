@@ -4,49 +4,37 @@
 
     angular.module('weatherApp', [])
 
-        .factory('weatherFac', ['$q', '$http', '$window', function ($q, $http, $window) {
+        .factory('weatherFac', ['$http', '$window', function ($http, $window) {
 
             /* Get user location
-             * Async operation requires promise ($q)
              *
              * @params                [none]
              * @returns   [object]    [coordinates obj or error]
              */
             function getCurrentPosition() {
-                var deferred = $q.defer();
 
-                if (!$window.navigator.geolocation) {
+                var url = 'http://ipinfo.io';
 
-                    // fallback to IP based location
-                    $http.get('http://ipinfo.io')
-                        .then(function (response) {
-
-                            // Response lat/long comes as single sting.
-                            // getWeather() expects a serparate lat & long.
-                            // First step: convert to an array
-                            var coords = response.data.loc.split(',');
-
-                            // then 'return' as a lat/long object
-                            deferred.resolve({
-                                latitude: coords[0],
-                                longitude: coords[1]
-                            });
-                        });
-
-                } else {
-
-                    // html5 browser geolocation
-                    $window.navigator.geolocation.getCurrentPosition(
-                        function (pos) {
-                            deferred.resolve(pos.coords);
-                        },
-                        function (err) {
-                            deferred.reject(err);
-                        }
-                    );
+                if (location.protocol === 'https:') {
+                    alert('https connections unsupported - Please reload over regular http connection');
                 }
 
-                return deferred.promise;
+                return $http.get(url)
+                    .then(function (response) {
+
+                        // Response lat/long comes as single sting.
+                        // getWeather() expects a serparate lat & long.
+                        // First step: convert to an array
+                        var coords = response.data.loc.split(',');
+
+                        // then 'return' as a lat/long object
+                        return {
+                            latitude: coords[0],
+                            longitude: coords[1]
+                        };
+                    }, function (err) {
+                        return err;
+                    });
             }
 
             /* Get local weather
@@ -69,9 +57,10 @@
                             // success
                             return response.data.currentobservation;
                         },
-                        function (response) {
+                        function (err, response) {
                             // error
-                            console.log('Status: ' + response.status);
+                            console.log('Status: ' + err);
+                            return err;
                         }
                     );
             }
@@ -81,7 +70,6 @@
                 getCurrentPosition: getCurrentPosition,
                 getWeather: getWeather
             };
-        
         }])
 
         .controller('weatherController', ['weatherFac', function (weatherFac) {
@@ -190,6 +178,9 @@
                         vm.weather.location = city + ', ' + state;
                         vm.weather.units = degSign + ' ' + units;
                         vm.weather.icon = iconMap[weather.Weatherimage];
+                    })
+                    .catch(function (err) {
+
                     });
             }());
 
@@ -209,6 +200,7 @@
                     vm.weather.units = degSign + ' F';
                 }
             };
+        
         }]);
 
 }());
