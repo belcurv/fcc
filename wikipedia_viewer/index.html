@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wikipedia Viewer</title>
+    
+    <link rel="stylesheet" href="style.css" />
+    
+    <script src="lib/angular.js"></script>
+    <script src="app.js"></script>
+    
+</head>
+<body ng-app="wikiApp" ng-controller="wikiController as vm">
+    
+    <header>
+        <div class="title">
+            <h1>FCC Wikipedia Viewer</h1>
+        </div>
+        <form class="search-form">
+            <input  class="" id="searchBox" type="search" ng-model="vm.searchBox" />
+            <button class="" ng-click="vm.methods.search(vm.searchBox)">Search</button>
+            <button class="" ng-click="vm.methods.random()">Random</button>
+        </form>
+    </header>
+    
+    <article>
+        <div class="results-box" ng-if="vm.resultsArray">        
+            <wiki-result class="result" result="x" ng-repeat="x in vm.resultsArray"></wiki-result>
+        </div>
+    </article>
+    
+    <wiki-footer></wiki-footer>
+    
+</body>
+</html>
