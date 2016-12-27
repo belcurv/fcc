@@ -24,8 +24,8 @@
     </header>
     
     <article>
-        <div class="results-box" ng-if="vm.resultsArray">        
-            <wiki-result class="result" result="x" ng-repeat="x in vm.resultsArray"></wiki-result>
+        <div class="results-box" ng-if="vm.resultsArray" ng-repeat="x in vm.resultsArray">        
+            <wiki-result ng-show="x" result="x" ng-repeat="x in vm.resultsArray"></wiki-result>
         </div>
     </article>
     

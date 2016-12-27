@@ -91,11 +91,16 @@ article {
 }
 
 .results-box {
-    margin: 65px 20px 20px 20px;
+    margin: 60px 10px 10px 10px;
 }
 
 .result {
-    padding-bottom: 2em;
+    margin-bottom: 2em;
+    padding: 5px 10px 10px 10px;
+}
+
+.result:hover {
+    background: rgba(100,100,100,0.45);
 }
 
 .result > p {
