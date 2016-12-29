@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FCC Who's on Twitch</title>
+    
+    <link href="style.css" rel="stylesheet" />
+    
+    <script src="lib/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="twitchApp" ng-controller="twitchController">
+   
+    <div class="container">
+       
+        <table class="table">
+            <thead>
+                <th>Logo</th>
+                <th>Name</th>
+                <th>Bio</th>
+                <th>Url</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="u in allUsers">
+                    <td><img class="logo" src="{{ u.data.logo }}" alt="{{ u.data.display_name }} logo" </td>
+                    <td>{{ u.data.display_name }}</td>
+                    <td>{{ u.data.bio }}</td>
+                    <td><a href="{{ u.data._links.self }}">{{ u.data._links.self }}</a></td>
+                </tr>
+            </tbody>
+        </table>
+       
+        <!-- FULL JSON response object - uncomment for testing -->
+        <!-- <pre>{{ allUsers | json:2 }}</pre>-->
+    
+    </div>
+    
+</body>
+</html>
