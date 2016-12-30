@@ -25,13 +25,13 @@
                     <td><img class="logo" src="{{ u.data.logo }}" alt="{{ u.data.display_name }} logo" </td>
                     <td>{{ u.data.display_name }}</td>
                     <td>{{ u.data.bio }}</td>
-                    <td><a href="{{ u.data._links.self }}">{{ u.data._links.self }}</a></td>
+                    <td><a href="{{ u.data._links.self }}" target="_blank">{{ u.data._links.self }}</a></td>
                 </tr>
             </tbody>
         </table>
        
         <!-- FULL JSON response object - uncomment for testing -->
-        <!-- <pre>{{ allUsers | json:2 }}</pre>-->
+         <pre>{{ allUsers | json:2 }}</pre>
     
     </div>
     
