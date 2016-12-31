@@ -1,39 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>FCC Who's on Twitch</title>
-    
+
     <link href="style.css" rel="stylesheet" />
-    
+
     <script src="lib/angular.js"></script>
     <script src="app.js"></script>
 </head>
-<body ng-app="twitchApp" ng-controller="twitchController">
-   
-    <div class="container">
-       
-        <table class="table">
-            <thead>
-                <th>Logo</th>
-                <th>Name</th>
-                <th>Bio</th>
-                <th>Url</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="u in allUsers">
-                    <td><img class="logo" src="{{ u.data.logo }}" alt="{{ u.data.display_name }} logo" </td>
-                    <td>{{ u.data.display_name }}</td>
-                    <td>{{ u.data.bio }}</td>
-                    <td><a href="{{ u.data._links.self }}" target="_blank">{{ u.data._links.self }}</a></td>
-                </tr>
-            </tbody>
-        </table>
-       
-        <!-- FULL JSON response object - uncomment for testing -->
-         <pre>{{ allUsers | json:2 }}</pre>
-    
-    </div>
-    
+
+<body ng-app="twitchApp" ng-controller="twitchController" ng-cloak>
+
+    <article>
+        <div class="container">
+
+            <form id="filter">
+                Filter:
+                <input type="radio" ng-model="radioFilter" ng-value="" checked> All
+                <input type="radio" ng-model="radioFilter" ng-value="true"> Online
+                <input type="radio" ng-model="radioFilter" ng-value="false"> Offline
+            </form>
+
+            <table class="table">
+                <thead>
+                    <th></th>
+                    <th>Channel</th>
+                    <th>Status</th>
+                    <th>Online</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="ch in allChannels | orderBy:['-isOnline','name'] | filter:{isOnline: radioFilter} ">
+                        <td>
+                            <a ng-if="!ch.error" href="{{ ch.url }}" target="_blank">
+                                <img class="logo" src="{{ ch.logo }}" alt="{{ ch.display_name }} logo" />
+                            </a>
+                        </td>
+                        <td>
+                            <a ng-if="!ch.error" href="{{ ch.url }}" target="_blank">
+                            {{ ch.display_name }}
+                        </a>
+                        </td>
+                        <td>
+                            <span class="status">{{ ch.status }}</span>
+                            <span class="now-streaming" ng-if="ch.isOnline">
+                            <a href="{{ ch.url }}" target="_blank">
+                            Now Streaming: {{ ch.stream.stream.game }}
+                            </a>
+                        </span>
+                        </td>
+                        <td class="online">
+                            <span class="greendot" ng-if="!ch.error && ch.isOnline"></span>
+                            <span class="reddot" ng-if="!ch.error && !ch.isOnline"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- FULL JSON response object - uncomment for testing -->
+            <!--         <pre>{{ allChannels | json:2 }}</pre>-->
+
+        </div>
+    </article>
+
+    <belcurv-footer name="Twitch Stream Status" version="v1.0.0"></belcurv-footer>
+
 </body>
+
 </html>

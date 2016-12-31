@@ -1,65 +1,18 @@
 /*
 
-User Story: I can see whether Free Code Camp is currently streaming on Twitch.tv.
-User Story: I can click the status output and be sent directly to the Free Code Camp's Twitch.tv channel.
-User Story: if a Twitch user is currently streaming, I can see additional details about what they are streaming.
+kudos:
+http://stackoverflow.com/questions/11850025/recommended-way-of-getting-data-from-the-server/11850027#11850027
+
 User Story: I will see a placeholder notification if a streamer has closed their Twitch account (or the account never existed). You can verify this works by adding brunofin and comster404 to your array of Twitch streamers.
 
-Hint: See an example call to Twitch.tv's JSONP API at http://forum.freecodecamp.com/t/use-the-twitchtv-json-api/19541.
-
-Hint: The relevant documentation about this API call is here: https://github.com/justintv/Twitch-API/blob/master/v3_resources/streams.md#get-streamschannel.
-
-Hint: Here's an array of the Twitch.tv usernames of people who regularly stream: ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"]
-
-UPDATE: Due to a change in conditions on API usage explained here Twitch.tv now requires an API key, but we've built a workaround. Use https://wind-bow.gomix.me/twitch-api instead of twitch's API base URL (i.e. https://api.twitch.tv/kraken ) and you'll still be able to get account information, without needing to sign up for an API key.
-
-USAGE:
-Replace the Twitch API base URL https://api.twitch.tv/kraken with https://wind-bow.gomix.me/twitch-api. Use this endpoint according to the Twitch API documentation.
+UPDATE: Due to a change in conditions on API usage explained here Twitch.tv now requires an API key. Workaround: Use https://wind-bow.gomix.me/twitch-api 
 
 NOTE:
-This server caches data to lower the request rate. To prevent abuses this server accepts GET requests only, and serves only routes /users/:user, /channels/:channel, and /streams/:stream. These are more than enough to complete the challenge.
+This server accepts GET requests only, to /users/:user, /channels/:channel, and /streams/:stream.
 
-Format of API call:
-   https://wind-bow.gomix.me/twitch-api/users/freecodecamp?api_version=3
-   
-Response object looks like:
-[
-  {
-    "data": {
-      "display_name": "ESL_SC2",
-      "_id": 30220059,
-      "name": "esl_sc2",
-      "type": "user",
-      "bio": "For standings, schedule, and results, visit http://www.intelextrememasters.com/",
-      "created_at": "2012-05-02T09:59:20Z",
-      "updated_at": "2016-12-29T20:00:13Z",
-      "logo": "https://static-cdn.jtvnw.net/jtv_user_pictures/esl_sc2-profile_image-d6db9488cec97125-300x300.jpeg",
-      "_links": {
-        "self": "https://api.twitch.tv/kraken/users/esl_sc2"
-      }
-    },
-    "status": 200,
-    "config": {
-      "method": "GET",
-      "transformRequest": [
-        null
-      ],
-      "transformResponse": [
-        null
-      ],
-      "jsonpCallbackParam": "callback",
-      "api_version": 3,
-      "url": "https://wind-bow.gomix.me/twitch-api/users/ESL_SC2",
-      "headers": {
-        "Accept": "application/vnd.twitchtv.3+json"
-      }
-    },
-    "statusText": ""
-  },
-  {
-  ...
-  }
-]
+USAGE:
+https://wind-bow.gomix.me/twitch-api/users/freecodecamp?api_version=3
+https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?api_version=3
 
 */
 
@@ -68,99 +21,141 @@ Response object looks like:
 
 (function () {
     'use strict';
-    
+
     angular
-    
+
         .module('twitchApp', [])
-    
+
+        // Twitch asks for specific GET header
         .config(['$httpProvider', function ($httpProvider) {
             $httpProvider.defaults.headers.get = {
-                'Accept' : 'application/vnd.twitchtv.3+json'
+                'Accept': 'application/vnd.twitchtv.3+json'
             };
         }])
     
-        .factory('twitchFactory', ['$http', '$q', function ($http, $q) {
+        // API details used throughout
+        .constant('api', {
+            endpoint: 'https://wind-bow.gomix.me/twitch-api',
+            params: {
+                api_version: 3
+            }
+        })
+
+        // Channels service
+        .factory('Channel', ['$http', 'api', function ($http, api) {
             
-            // ============================ SETUP =============================
-            var api = {
-                endpoint: 'https://wind-bow.gomix.me/twitch-api',
-                params  : {
-                    api_version: 3
-                }
+            var Channel = function (data) {
+                angular.extend(this, data);
             };
             
-            
-            // ======================= UTILITY METHODS ========================
-            
-            /* AJAX GET a single user
-             *
-             * @params   [string]   user   [Twitch username]
-             * @returns  [object]          [Twitch user response object]
-            */
-            function getUser(user) {
+            Channel.get = function (user) {
+                var fullRoute = api.endpoint + '/channels/' + user;
                 
-                var deferred  = $q.defer(),
-                    fullRoute = api.endpoint + '/users/' + user;
-                
-                $http.get(fullRoute, api.params)
+                return $http.get(fullRoute, api.params)
                     .then(function (response) {
-                        deferred.resolve(response);
-                    }, function (error) {
-                        deferred.reject(error);
+                        return new Channel(response.data);
                     });
+            };
+            
+            return Channel;
+        }])
+    
+        // Streams service
+        .factory('Stream', ['$http', 'api', function ($http, api) {
+            
+            var Stream = function (data) {
+                angular.extend(this, data);
+            };
+            
+            Stream.get = function (user) {
+                var fullRoute = api.endpoint + '/streams/' + user;
                 
-                return deferred.promise;
+                return $http.get(fullRoute, api.params)
+                    .then(function (response) {
+                        return new Stream(response.data);
+                    });
+            };
+            
+            return Stream;
+        }])
+
+        // Main controller
+        .controller('twitchController', ['$scope', '$interval', 'Channel', 'Stream', function ($scope, $interval, Channel, Stream) {
+
+            // sample data
+            var sampleUsers = ['ESL_SC2', 'OgamingSC2', 'cretetion', 'freecodecamp', 'storbeck', 'habathcx', 'RobotCaleb', 'noobs2ninjas', 'brunofin', 'comster404'];
+            
+            // init receptacle
+            $scope.allChannels = [];
+            
+            // get channels and populate allChannels array
+            angular.forEach(sampleUsers, function (user) {
+                return Channel.get(user)
+                    .then(function (channel) {
+                        if (channel.error) {
+                            $scope.allChannels.push({
+                                error: channel.status,
+                                display_name: user,
+                                status: channel.message,
+                                isOnline: false
+                            });
+                            
+                        } else {
+                            $scope.allChannels.push(channel);
+                            attachStream(channel);
+                        }
+                        
+                    });
+            });
+            
+            // merge Stream response data with Channel response data
+            function attachStream(channel) {
+                Stream.get(channel.name)
+                    .then(function (stream) {
+                        channel.isOnline = (stream.stream === null) ? false : true;
+                        channel.stream = stream;
+                    });
             }
             
-            
-            // ======================= PUBLIC METHODS =========================
-            
-            /* Fetch all users
-             *
-             * @params   [array]   users   [array of users]
-             * @returns  [array]           [array of user response objects]
-            */
-            function getUsers(users) {
-                var usersArray = [],
-                    i;
-                
-                for (i = 0; i < users.length; i += 1) {
-                    getUser(users[i])
-                        .then(function (res) {
-                            usersArray.push(res);
+            // check & update 'online' status every 30 seconds
+            $interval(function () {
+                // console.log(new Date().getTime());
+                angular.forEach($scope.allChannels, function (channel) {
+                    Stream.get(channel.name)
+                        .then(function (stream) {
+                            var isOnline = (stream.stream === null) ? false : true;
+                            // console.log(channel.name + ' is online? ' + isOnline);
+                            channel.isOnline = isOnline;
                         });
-                }
+                });
                 
-                return usersArray;
-                
-            }
-            
-            return {
-                getUsers: getUsers
-            };
+            }, 30000);
             
         }])
     
-        .controller('twitchController', ['$scope', 'twitchFactory', function ($scope, twitchFactory) {
-            
-            var sampleUsers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-            
-//            twitchFactory.getUser(sampleUsers[3])
-//                .then(function (res) {
-//                    $scope.dammit = res;
-//                });
-            
-            $scope.allUsers = twitchFactory.getUsers(sampleUsers);
-            
-        }])
     
-        .directive('twitchUserList', function () {
+        // Standard footer directive
+        .directive('belcurvFooter', function () {
         
             return {
-                
+                restrict: 'AE',
+                scope: {
+                    name: '@',
+                    version: '@'
+                },
+                template: [
+                    '<p class="footer-credit">{{ name }} {{ version }} : : by ',
+                    '<a href="https://github.com/belcurv" target="_blank">belcurv</a> ',
+                    '<a href="https://github.com/belcurv" target="_blank">',
+                    '<svg width="20" height="20" class="github-icon" viewBox="0 0 16 16" version="1.1" aria-hidden="true">',
+                    '<path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"> </path>',
+                    '</svg></a></p>',
+                    '<br />',
+                    '<p class="footer-credit">Source released under the MIT license. Website and documentation licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.</p>'
+                ].join('')
             };
-        
+
         });
-    
-    
+
+
 }());
