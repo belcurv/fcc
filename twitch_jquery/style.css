@@ -78,17 +78,17 @@ button:hover {
 
 
 
-.clickAll:hover {
+#clickAll:hover {
     background-color: yellow;
     color: orange;
 }
 
-.clickOnline:hover {
+#clickOnline:hover {
     background-color: #CCFFCC;
     color: green;
 }
 
-.clickOffline:hover {
+#clickOffline:hover {
     background-color: #ff6961;
     color: darkred;
 }
