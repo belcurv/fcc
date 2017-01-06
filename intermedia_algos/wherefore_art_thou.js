@@ -51,7 +51,7 @@ function whatIsInAName(collection, source) {
     return arr;
 }
 
-//console.log('should return \n [{ a: 1, b: 2 }, { a: 1, b: 2, c: 2 }]');
+// passes
 console.log(
     whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "b": 2 })
     // should return [{ "a": 1, "b": 2 }, { "a": 1, "b": 2, "c": 2 }]
@@ -69,8 +69,7 @@ console.log(
     // should return [{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }]
 );
 
-
-// fails
+// passes
 console.log(
     whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "c": 2 })
     // should return [{ "a": 1, "b": 2, "c": 2 }]
