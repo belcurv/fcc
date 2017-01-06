@@ -33,11 +33,7 @@ Ok, so the reason we set Networking / Attached To: Bridged Adapter is so the vir
 
 ## GUEST ADDITIONS
 
-Guest Additions allow dynamic guess OS window resizing.  You need to install guest additions to resize or fullscreen your VM.
-
-sudo apt-get install virtualbox-guest-dkms
-
-Instead, you can install guest additions directly from VirtualBox:
+Guest Additions allow dynamic guess OS window resizing.  You need to install guest additions to resize or fullscreen your VM.  You install guest additions directly from VirtualBox:
 
 1. start your VM and log into Xubuntu/Ubuntu
 
