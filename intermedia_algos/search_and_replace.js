@@ -5,7 +5,7 @@
    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
 */
 
-/* Check and Preserve letter casing
+/* Check and Preserve casing of first letter
  * @params   [string]   before   [the origin word to be replaced]
  * @params   [string]   after    [the replacement word]
  * @returns  [string]            [replacement word with correct casing]
@@ -31,14 +31,11 @@ function myReplace(str, before, after) {
     var inputArr = str.split(' ');
 
     return inputArr
-        .map(function (elem, ind) {
+        // .map((elem, ind) => (elem === before) ? checkCaps(before, after) : elem)  // 1-liner
+        .map(function (elem) {
             return (elem === before) ? checkCaps(before, after) : elem;
         })
         .join(' ');
-
-    //    return inputArr
-    //        .map((elem, ind) => (elem === before) ? checkCaps(before, after) : elem)
-    //        .join(' ');
 
 }
 
