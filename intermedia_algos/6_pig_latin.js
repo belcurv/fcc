@@ -2,19 +2,22 @@
 /* globals console */
 
 /* Translate the provided string to pig latin.
-
-first consonant (or consonant cluster) moves to the end of the word + suffix "ay".
-
-If a word begins with a vowel you just add "way" to the end.
-
-Input strings are guaranteed to be English words in all lowercase.
-
-Here are some helpful links:
-    Array.prototype.indexOf()
-    Array.prototype.push()
-    Array.prototype.join()
-    String.prototype.substr()
-    String.prototype.split()
+   First consonant (or consonant cluster) moves to the end of the 
+   word + suffix "ay".
+   
+   If a word begins with a vowel you just add "way" to the end.
+   
+   Input strings are guaranteed to be English words in all lowercase.
+   
+   String.prototype.search()
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
+    
+   String.prototype.substr()
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr
+    
+   String.prototype.slice()
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice
+    
 */
 
 ///////////// LAME WAY ///////////////////
@@ -72,6 +75,9 @@ function translatePigLatin(str) {
 
 /////////////////////// tests ///////////////////////////
 
+console.log(
+    translatePigLatin("Three")  // should return "eeThray"
+);
 console.log(
     translatePigLatin("consonant")  // should return "onsonantcay"
 );
