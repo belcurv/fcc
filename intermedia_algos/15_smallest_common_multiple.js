@@ -32,6 +32,11 @@ function GCD(a, b) {
     }
 }
 
+// find lowest common multiple of two integers
+function LCM(a, b) {
+    return (a * b) / GCD(a, b);
+}
+
 
 function smallestCommons(arr) {
     
@@ -39,14 +44,16 @@ function smallestCommons(arr) {
     arr = arr.sort( (a, b) => a - b );
     
     var gcd = GCD(arr[0], arr[1]),
-        lcm = (arr[0] * arr[1]) / gcd,
+        lcm = LCM(arr[0], arr[1]),
         fullSeries = [],
         i;
     
     // generate series
     for (i = arr[0]; i <= arr[0] * arr[1]; i += 1) {
         fullSeries.push(i);
-    };
+    }
+    
+    // gonna need us some .map() and/or then .reduce()
     
     console.log(fullSeries, gcd);
     
