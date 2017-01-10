@@ -38,6 +38,25 @@ function dropElements(arr, func) {
     
 */
 
+/* Recursive version
+
+   function dropElements(arr, func) {
+   
+	    // if either the array is empty, or the function returns true,
+       // we're done - return the array
+	    if (arr.length === 0 || func(arr[0])) {
+           return arr;
+           
+       } else {
+  	        // remove first element
+  	        arr.shift();
+           // and feed resulting array back into 'dropElements()'
+           return dropElements(arr, func);
+       }
+   }
+
+*/
+
 console.log(
     dropElements([1, 2, 3], function(n) {return n < 3; })
 );
