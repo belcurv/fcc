@@ -14,6 +14,34 @@
    Euclid's Algorithm:
    https://www.youtube.com/watch?v=bUz2Fe9L4Xs
    
+   // WAIT - prime factorization?!  Yes.-  see ver 2
+   
+   Prime factors
+   1   1
+   2   2
+   3   3
+   4   2
+   5   5
+   
+   So ... 1 * 2 * 3 * 2 * 5 = 60
+   
+   var series = Array.apply(null, {length: num}).map((n, i) => i + 1),
+        output = 0;
+    
+    series.forEach(function (val) {
+        
+        var factors = Array
+            .apply(null, {length: val})
+            .map((n, i) => i + 1)
+            .filter((el) => val % el === 0);
+        
+        if (factors.length === 2) {
+            output += val;
+        }
+        
+});
+   
+   
 */
 
 // find greatest common divisor via Euclid's algorithm
@@ -55,7 +83,12 @@ function smallestCommons(arr) {
     
     // gonna need us some .map() and/or then .reduce()
     
-    console.log(fullSeries, gcd);
+    console.log(fullSeries.map(function (el) {
+        function temp = [];
+        
+        for
+        
+    }));
     
     
     
