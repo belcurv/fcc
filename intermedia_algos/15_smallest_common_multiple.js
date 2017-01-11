@@ -15,122 +15,77 @@
    https://www.youtube.com/watch?v=bUz2Fe9L4Xs
    
    // WAIT - prime factorization?!  Yes.-  see ver 2
-   
-   Prime factors
-   1   1
-   2   2
-   3   3
-   4   2
-   5   5
-   
-   So ... 1 * 2 * 3 * 2 * 5 = 60
-   
-   var series = Array.apply(null, {length: num}).map((n, i) => i + 1),
-        output = 0;
-    
-    series.forEach(function (val) {
-        
-        var factors = Array
-            .apply(null, {length: val})
-            .map((n, i) => i + 1)
-            .filter((el) => val % el === 0);
-        
-        if (factors.length === 2) {
-            output += val;
-        }
-        
-});
-   
-   
+      EDIT - no!  prime factorization is too complicated...
+      Do this with Euclid's Algo, GCD > LCM
+      This is possible because
+         LCM(a, b, c)
+         is the same as
+         LCM( LCM(a, b), c )
+      Perfect application for .reduce()
 */
+
 
 // find greatest common divisor via Euclid's algorithm
 // based on the remainder after dividing 'b' into 'a',
 // and then recusively passing the remainder back into the CGD
 // function.
 function GCD(a, b) {
-    
+
     // when the remainder is 0, we're done: return LAST divisor
     if (b === 0) {
         return a;
     } else {
-        // recursive magic!
         // return 'b' and the remainder of 'a'/'b'
         return GCD(b, a % b);
     }
 }
 
+
 // find lowest common multiple of two integers
+// using Euclid's method of finding GCD
 function LCM(a, b) {
     return (a * b) / GCD(a, b);
 }
 
 
+// find the LCM of any number of integers
 function smallestCommons(arr) {
-    
-    // sort input array low to high
-    arr = arr.sort( (a, b) => a - b );
-    
-    var gcd = GCD(arr[0], arr[1]),
-        lcm = LCM(arr[0], arr[1]),
-        fullSeries = [],
+
+    // sort input array ascending
+    // arr = arr.sort(function (a, b) { return a - b } );  // es5
+    arr = arr.sort((a, b) => a - b);                       // es6
+
+    // expand input array to continuous series
+    var series = [],
         i;
-    
-    // generate series
-    for (i = arr[0]; i <= arr[0] * arr[1]; i += 1) {
-        fullSeries.push(i);
+
+    for (i = arr[0]; i <= arr[1]; i += 1) {
+        series.push(i);
     }
-    
-    // gonna need us some .map() and/or then .reduce()
-    
-    console.log(fullSeries.map(function (el) {
-        function temp = [];
-        
-        for
-        
-    }));
-    
-    
-    
-//    var fullSeries = [],
-//        seriesA = [],
-//        seriesB = [],
-//        commons = [],
-//        i;
-//    
-//    // generate series
-//    for (i = arr[0]; i <= arr[0] * arr[1]; i += 1) {
-//        fullSeries.push(i);
-//    }
-//    
-//    // build array of arr[0] multiples
-//    fullSeries.forEach(function (num) {
-//        if (num % arr[0] === 0) {
-//            seriesA.push(num);
-//        }
-//    });
-//    
-//    // build array of arr[1] multiples
-//    fullSeries.forEach(function (num) {
-//        if (num % arr[1] === 0) {
-//            seriesB.push(num);
-//        }
-//    });
-//    
-//    seriesA.forEach(function (numA) {
-//        
-//        seriesB.forEach(function (numB) {
-//            // console.log(numA, (numA === numB));
-//            if (numA === numB) {
-//                commons.push(numA);
-//            }
-//        });
-//        
-//    });
-//    
-//    return commons[0];
+
+    // seeing is believing
+    console.log('Input series: ' + series);
+
+    ///////////////////////////////////////////////////////////////
+    //                       do the thing !                      //
+    ///////////////////////////////////////////////////////////////
+    return series.reduce((a, b) => LCM(a, b));    // es6
+
+    // return series.reduce(function (a, b) {     // es5
+    //    return LCM(a, b);
+    // });
 }
 
+// tests
 console.log(
-    smallestCommons([1,5])
+    smallestCommons([1, 5])   // should return 60
+);
+console.log(
+    smallestCommons([5, 1])   // should return 60  
+);
+console.log(
+    smallestCommons([1, 13])  // should return 360360.
+);
+console.log(
+    smallestCommons([23, 18]) // should return 6056820
 );
