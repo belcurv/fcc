@@ -3,45 +3,47 @@
 
 /* Flatten a nested array. You must account for varying levels of nesting.
 
-Array.isArray() determines whether the passed value is an Array.
-
-Array.isArray([1, 2, 3]);  // true
-Array.isArray({foo: 123}); // false
-Array.isArray("foobar");   // false
-Array.isArray(undefined);  // false
-
+   Using iterative solution.  How it works: it loops over tht input array,
+   shifting elements to the output array if they saisfy a specific condition:
+   if they are not themselves arrays.  If the shifted element IS an array,
+   input 'arr' is set to the current el with the remaining 'arr' (from the 
+   shift) concatenated onto its back.
+   
+   1. Init empty output array. This will contain the elements after flattening
+   2. var 'iteration' is just used in console for readability
+   3. the 'while' loop iterates as long as the input array has length
+   4. shift() the 1st element 'elem' off.
+   5. if 'elem' is itself an array, re-assign 'arr' = 'elem' plus the 
+      leftovers from shifting 'elem' off the front.
+   6. if 'elem' is not an array itself, push it to 'output'
+   7. eventually, 'arr' will have zero length and all deep elements will
+      have been pushed to 'output'
+   8. Return 'output'
  */
-
-function reducer(el) {
-    
-    // if it's not an array, just return it
-    if (!Array.isArray(el)) {
-        return el;
-    }
-        
-}
-
-function isArray(elem) {
-    return (Array.isArray(elem) ? true : false);
-}
 
 function steamrollArray(arr) {
     
     var output = [],
-        ind = 1;
+        iteration = 1;
     
-    while (arr.length) {
-        console.log(ind);
+    while (arr.length > 0) {
+        console.log('--------- Loop ' + iteration + ' ---------');
+        console.log('     Input: ', arr);
         
         var elem = arr.shift();
+        console.log('  Shifting: ', elem);
+        console.log(' Leftovers: ', arr);
         
-        if (isArray(elem)) {
+        if (Array.isArray(elem)) {
             arr = elem.concat(arr);
         } else {
             output.push(elem);
         }
         
-        ind++;
+        console.log(' New array: ', arr);
+        console.log('Output arr: ', output);
+        
+        iteration += 1;
         
     }
     
