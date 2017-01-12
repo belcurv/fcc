@@ -27,6 +27,7 @@ function steamrollArray(arr) {
         iteration = 1;
     
     while (arr.length > 0) {
+        
         console.log('--------- Loop ' + iteration + ' ---------');
         console.log('     Input: ', arr);
         
