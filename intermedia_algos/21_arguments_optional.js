@@ -13,20 +13,45 @@ sumTwoAnd(3) returns 5.
 
 If either argument isn't a valid number, return undefined.
 
-Remember to use Read-Search-Ask if you get stuck. Try to pair program. Write your own code.
-
-Here are some helpful links:
-
-    Closures
-
-    Arguments object
 */
 
 function addTogether() {
-    return false;
+    
+    // init
+    var args = [],
+        sum,
+        i;
+    
+    // push arg to array if it's is a number
+    for (i = 0; i < arguments.length; i += 1) {
+        if (typeof arguments[i] === 'number') {
+            args.push(arguments[i]);
+        } else {
+            return undefined;
+        }
+    }
+
+    // if less then 2 args, return a function, otherwise add args
+    if (args.length < 2) {
+        return (b) => (typeof b === 'number') ? (args[0] + b) : undefined;
+    } else {
+        return args.reduce( (a, b) => a + b );
+    }
 }
 
 // tests
 console.log(
-    addTogether(2,3)
+    addTogether(2,3)         // should return 5.
+);
+console.log(
+    addTogether(2)(3)        // should return 5
+);
+console.log(
+    addTogether("http://bit.ly/IqT6zt")    // should return undefined.
+);
+console.log(
+    addTogether(2, "3")      // should return undefined.
+);
+console.log(
+    addTogether(2)([3])      // should return undefined.
 );
