@@ -17,9 +17,8 @@ If either argument isn't a valid number, return undefined.
 
 function addTogether() {
     
-    // init
+    // init vars
     var args = [],
-        sum,
         i;
     
     // push arg to array if it's is a number

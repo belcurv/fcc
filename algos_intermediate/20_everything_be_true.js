@@ -6,13 +6,12 @@
 */
 
 function truthCheck(collection, pre) {
-        
-    function test(elem) {
-        var keys = Object.keys(elem);        
-        return elem.hasOwnProperty(pre) && elem[pre];
-    }
     
-    return collection.every(test);
+    // 'true' only if every element passes
+    return collection.every(function (elem) {
+        // 'true' if elem has key 'pre' and value elem.'pre'
+        return elem.hasOwnProperty(pre) && elem[pre];
+    });
 }
 
 // tests

@@ -14,13 +14,16 @@
 
 function binaryAgent(str) {
     
-    var charArr = str.split(' '),
-        output = charArr.map(function (char) {
-            char = parseInt(char, 2);
-            return String.fromCharCode(char);
-        });
+    var charArr = str.split(' ');  // input string -> array of strings
     
-    return output.join('');
+    return charArr
+    
+        .map(function (char) {
+            char = parseInt(char, 2);         // binary  -> integer
+            return String.fromCharCode(char); // integer -> unicode
+        })
+    
+        .join('');                            // array   -> string
 }
 
 // tests

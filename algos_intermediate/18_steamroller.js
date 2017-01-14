@@ -26,24 +26,29 @@ function steamrollArray(arr) {
     var output = [],
         iteration = 1;
     
+    // iterate as long as arr has length
     while (arr.length > 0) {
         
         console.log('--------- Loop ' + iteration + ' ---------');
         console.log('     Input: ', arr);
         
+        // capture 1st element of innput array
         var elem = arr.shift();
         console.log('  Shifting: ', elem);
         console.log(' Leftovers: ', arr);
         
         if (Array.isArray(elem)) {
+            // elem = array, reassign arr, adding 
             arr = elem.concat(arr);
         } else {
+            // elem != array, push elem to output
             output.push(elem);
         }
         
         console.log(' New array: ', arr);
         console.log('Output arr: ', output);
         
+        // increment iteration - only used for console output
         iteration += 1;
         
     }
