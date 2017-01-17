@@ -2,8 +2,8 @@
 /* globals $, console, document */
 
 
-$(document).ready(function () {
-
+(function () {
+    
     'use strict';
 
     var regA,
@@ -15,7 +15,7 @@ $(document).ready(function () {
         $calculator = $('#calculator'),
         $display    = $calculator.find('.calc-display'),
         $clearBtn   = $calculator.find('.btn-clear'),
-        $buttons    = $calculator.find('#buttons');
+        $buttons    = $calculator.find('.btn-container');
 
     
     // bind main button click events
@@ -158,4 +158,4 @@ $(document).ready(function () {
     // render on 1st hit
     render();
 
-});
+}());
