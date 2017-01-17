@@ -108,7 +108,7 @@ body {
 
 
 /* footer */
-belcurv-footer {
+.belcurv-footer {
     padding: 0.85em 0;
     background: #404040;
     color: #999;
@@ -116,23 +116,23 @@ belcurv-footer {
     font-size: 13px;
 }
 
-belcurv-footer .footer-credit {
+.belcurv-footer .footer-credit {
     display: inline-block;
     margin: .25em;
     vertical-align: middle;
 }
 
-belcurv-footer .github-icon {
+.belcurv-footer .github-icon {
     display: inline-block;
     fill: rgb(255, 255, 255);
     vertical-align: middle;
 }
 
-belcurv-footer a {
+.belcurv-footer a {
     color: white;
     text-decoration: none;
 }
 
-belcurv-footer a:hover {
+.belcurv-footer a:hover {
     text-decoration: underline;
 }
