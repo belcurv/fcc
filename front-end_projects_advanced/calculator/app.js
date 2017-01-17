@@ -19,30 +19,27 @@
         
             var template = [
                 '<div class="calc-body">',
-                  '<div class="calc-display"> 99.234 </div>',
+                  '<div id="display" class="calc-display></div>',
                   
-                  '<div class="btn-clear"> C </div>',
+                  '<div id="btn-clear" data-value="c" class="btn-clear"> C </div>',
                   
-                  '<div class="btn-container">',
-                    '<div class="btn calc-numbers"> 7 </div>',
-                    '<div class="btn calc-numbers"> 8 </div>',
-                    '<div class="btn calc-numbers"> 9 </div>',
-                    '<div class="btn calc-functions"> &divide; </div>',
-
-                    '<div class="btn calc-numbers"> 4 </div>',
-                    '<div class="btn calc-numbers"> 5 </div>',
-                    '<div class="btn calc-numbers"> 6 </div>',
-                    '<div class="btn calc-functions"> x </div>',
-
-                    '<div class="btn calc-numbers"> 1 </div>',
-                    '<div class="btn calc-numbers"> 2 </div>',
-                    '<div class="btn calc-numbers"> 3 </div>',
-                    '<div class="btn calc-functions"> - </div>',
-
-                    '<div class="btn calc-numbers"> . </div>',
-                    '<div class="btn calc-numbers"> 0 </div>',
-                    '<div class="btn calc-functions"> = </div>',
-                    '<div class="btn calc-functions"> + </div>',
+                  '<div id="buttons" class="btn-container">',
+                    '<div data-value="7" class="btn calc-numbers"> 7 </div>',
+                    '<div data-value="8" class="btn calc-numbers"> 8 </div>',
+                    '<div data-value="9" class="btn calc-numbers"> 9 </div>',
+                    '<div data-value="/" class="btn calc-functions"> &divide; </div>',
+                    '<div data-value="4" class="btn calc-numbers"> 4 </div>',
+                    '<div data-value="5" class="btn calc-numbers"> 5 </div>',
+                    '<div data-value="6" class="btn calc-numbers"> 6 </div>',
+                    '<div data-value="*" class="btn calc-functions"> x </div>',
+                    '<div data-value="1" class="btn calc-numbers"> 1 </div>',
+                    '<div data-value="2" class="btn calc-numbers"> 2 </div>',
+                    '<div data-value="3" class="btn calc-numbers"> 3 </div>',
+                    '<div data-value="-" class="btn calc-functions"> - </div>',
+                    '<div data-value="." class="btn calc-numbers"> . </div>',
+                    '<div data-value="0" class="btn calc-numbers"> 0 </div>',
+                    '<div data-value="=" class="btn calc-functions"> = </div>',
+                    '<div data-value="+" class="btn calc-functions"> + </div>',
                   '</div>',
                 
                 '</div>'
@@ -50,7 +47,90 @@
         
             function link(scope, elem, attrs) {
                 
-                var pOne = angular.element(document.createElement('p'));
+                // init variables
+                var regA = null,
+                    regB = null,
+                    opr,
+                    screen = '0';
+                    
+                
+                // cache DOM elements
+                var display = angular.element(document.getElementById('display')),
+                    btnClear = angular.element(document.getElementById('btn-clear')),
+                    btnContainer = angular.element(document.getElementById('buttons'));
+                
+                
+                // bind events
+                btnContainer.on('click', clickHandler);
+                btnClear.on('click', clear);
+                
+                
+                // handle clicks to main button group
+                function clickHandler(evt) {
+                    
+                    // ignore clicks on parent element
+                    if (evt.target !== evt.currentTarget) {
+                                                
+                        var btnValue = evt.target.dataset.value;
+                                                
+                        if (/[0-9]/.test(btnValue)) {
+                            handleNumbers(btnValue);
+                        } else {
+                            handleMath(btnValue);
+                        }
+                        
+                        render(btnValue);
+                    }
+                    
+                    evt.stopPropagation();
+                }
+                
+                
+                // handle clicks to 'clear' button
+                function clear(evt) {
+                    regA = 0;
+                    regB = 0;
+                    screen = '0';
+                    
+                    render();
+                    
+                    evt.stopPropagation();
+                }
+
+                
+                function render(value) {
+                    
+                    console.log(regA);
+                    
+                    if (regA) {
+                        screen = regA.toString();
+                    } else {
+                        screen = '0';
+                    }
+                    
+                    display.html(screen);
+                }
+                
+                
+                function handleNumbers(value) {
+                    
+                    console.log(typeof value);
+                    
+                    // store vals in registers
+                    regA += value;
+                    console.log('Number! ' + value);
+                }
+                
+                
+                function handleMath(operator) {
+                    
+                    // operate on values in registers
+                    // when operator is clicked, send screen values to
+                    // register A or B
+                    console.log('Operator! ' + operator);
+                }
+                
+                render();
                 
             }
         
