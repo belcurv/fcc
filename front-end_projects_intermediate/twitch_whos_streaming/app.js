@@ -16,8 +16,8 @@ https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?api_version=3
 
 */
 
-/*jslint */
-/*global angular */
+/* jshint esversion:6 */
+/* globals angular */
 
 (function () {
     'use strict';
@@ -29,13 +29,14 @@ https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?api_version=3
         // Twitch asks for specific GET header
         .config(['$httpProvider', function ($httpProvider) {
             $httpProvider.defaults.headers.get = {
-                'Accept': 'application/vnd.twitchtv.3+json'
+                'Accept': 'application/vnd.twitchtv.3+json',
+                'Client-ID': 'ivr0zlao7n7q2tjbzmux38rtadi5vz'
             };
         }])
     
         // API details used throughout
         .constant('api', {
-            endpoint: 'https://wind-bow.gomix.me/twitch-api',
+            endpoint: 'https://api.twitch.tv/kraken',
             params: {
                 api_version: 3
             }
