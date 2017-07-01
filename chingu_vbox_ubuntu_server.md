@@ -138,14 +138,30 @@ Setting up Ubuntu Server is pretty straightforward. Expect it to take about 30 m
 
 27. Eventually you'll be greeted by a login prompt. Login with the username and password previously created.
 
-Wecome to the Ubuntu cli! 
+**Wecome to the Ubuntu cli!**
+
+Upon login, you land at your user's home directory. Have a look around. Some useful commands:
+
+* `ls` list the contents of the current directory. Your home directory will appear empty.
+
+* `ls -la` list the director's contents with (`l`) long output, showing (`a`) all files. Your home directory actually has some hidden folders.
+
+* `exit` will log you out. 
+
+* `sudo apt-get update` will check for software updates (but not install them).
+
+* `sudo apt-get upgrade` will install the updates.
+
+* `sudo shutdown -h now` will log you out and shutdown ('halt') the VM.
+
+* `sudo reboot` or `shutdown -r now` will reboot the VM.
 
 _todo..._
 
-https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
+[Generate SSH keys](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)
 
-https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh
+[Connect via SSH client](https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh)
 
-https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04
+[Install nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
 
-https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
+[Deploy demo Node apps](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
